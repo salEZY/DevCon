@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb+srv://sale5413:sale5413@fejsumestofejsa-kwamg.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "my_secret"
+  "jwtSecret": "my_secret",
+  "githubClientId": "06b881c96457eef99ab9",
+  "githubSecret": "189034524d77b32d36eb4d2cd6c68e24189e7b8f"
 }
