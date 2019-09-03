@@ -45,7 +45,7 @@ const EditProfile = ({
       youtube: loading || !profile.social ? '' : profile.social.youtube,
       instagram: loading || !profile.social ? '' : profile.social.instagram
     })
-  }, [loading])
+  }, [loading, getCurrentProfile, profile])
 
   const {
     company,
@@ -257,7 +257,13 @@ const mapStateToProps = state => ({
   profile: state.profile
 })
 
+const mapDispatchToProps = dispatch => ({
+  createProfile,
+
+  getCurrentProfile: () => dispatch(getCurrentProfile())
+})
+
 export default connect(
   mapStateToProps,
-  { createProfile, getCurrentProfile }
+  mapDispatchToProps
 )(withRouter(EditProfile))
