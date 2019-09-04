@@ -45,7 +45,7 @@ const EditProfile = ({
       youtube: loading || !profile.social ? '' : profile.social.youtube,
       instagram: loading || !profile.social ? '' : profile.social.instagram
     })
-  }, [loading, getCurrentProfile, profile])
+  }, [getCurrentProfile, loading])
 
   const {
     company,
@@ -74,10 +74,9 @@ const EditProfile = ({
   }
   return (
     <Fragment>
-      <h1 className="large text-primary">Create Your Profile</h1>
+      <h1 className="large text-primary">Edit Your Profile</h1>
       <p className="lead">
-        <i className="fas fa-user"></i> Let's get some information to make your
-        profile stand out
+        <i className="fas fa-user"></i> Change your profile information
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={e => onSubmit(e)}>
@@ -250,20 +249,16 @@ const EditProfile = ({
 EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired
+  getCurrentProfile: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile
-})
-
-const mapDispatchToProps = dispatch => ({
-  createProfile,
-
-  getCurrentProfile: () => dispatch(getCurrentProfile())
+  profile: state.profile,
+  errors: state.errors
 })
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { createProfile, getCurrentProfile }
 )(withRouter(EditProfile))
