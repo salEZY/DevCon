@@ -112,9 +112,6 @@ router.delete('/:id', auth, async (req, res) => {
 router.put('/like/:id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)
-  } catch (error) {
-    console.error(error.message)
-    res.status(500).send('Server Error!')
     //Check if there are likes already
     if (
       post.likes.filter(like => like.user.toString() === req.user.id).length > 0
@@ -126,18 +123,19 @@ router.put('/like/:id', auth, async (req, res) => {
     await post.save()
 
     res.json(post.likes)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send('Server Error!')
   }
 })
 
 //@route  PUT api/posts/unlike/:id
 //@desc   Like a post
 //@access Private
-router.put('/like/:id', auth, async (req, res) => {
+router.put('/unlike/:id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)
-  } catch (error) {
-    console.error(error.message)
-    res.status(500).send('Server Error!')
+
     //Check if there are likes already
     if (
       post.likes.filter(like => like.user.toString() === req.user.id).length ===
@@ -155,6 +153,9 @@ router.put('/like/:id', auth, async (req, res) => {
     await post.save()
 
     res.json(post.likes)
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send('Server Error!')
   }
 })
 
