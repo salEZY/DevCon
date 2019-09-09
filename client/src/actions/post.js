@@ -7,8 +7,7 @@ import {
   DELETE_POST,
   ADD_POST,
   GET_POST,
-  ADD_COMMENT,
-  REMOVE_COMMENT
+  ADD_COMMENT
 } from './types'
 
 // Get Posts
@@ -144,25 +143,6 @@ export const addComment = (postId, formData) => async dispatch => {
     })
 
     dispatch(setAlert('Comment Added', 'success'))
-  } catch (error) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: error.response.statusText, status: error.response.status }
-    })
-  }
-}
-
-// Add comment
-export const deleteComment = (postId, commentId) => async dispatch => {
-  try {
-    await axios.delete(`/api/posts/comment/${postId}/${commentId}`)
-
-    dispatch({
-      type: REMOVE_COMMENT,
-      payload: commentId
-    })
-
-    dispatch(setAlert('Comment Deleted', 'success'))
   } catch (error) {
     dispatch({
       type: POST_ERROR,
