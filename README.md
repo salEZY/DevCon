@@ -16,7 +16,7 @@ npm install
 After that navigate to client folder and run:
 
 ```
-npm install
+npm dev
 
 ```
 
